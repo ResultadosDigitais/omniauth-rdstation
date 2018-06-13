@@ -9,7 +9,7 @@ module OmniAuth
 
       option :client_options,
              site: 'https://api.rd.services',
-             authorize_url: 'https://api.rd.services/auth',
+             authorize_url: 'https://api.rd.services/auth/dialog',
              token_url: 'auth/token'
 
       info do
