@@ -12,12 +12,9 @@ module OmniAuth
              authorize_url: 'https://api.rd.services/auth/dialog',
              token_url: 'auth/token'
 
-      info do
-        { name: 'username' }
-      end
-
       def request_phase
-        redirect client.auth_code.authorize_url({:redirect_url => callback_url}.merge(authorize_params))
+        auth_url = { redirect_url: callback_url }.merge(authorize_params)
+        redirect client.auth_code.authorize_url(auth_url)
       end
     end
   end
