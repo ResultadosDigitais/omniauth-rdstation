@@ -22,7 +22,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Result:
+
+```json
+{
+  "provider": "rdstation",
+  "uid": null,
+  "info": {
+    "name": "username"
+  },
+  "credentials": {
+    "token": "my-jwt-access-token",
+    "refresh_token": "my-refresh-token",
+    "expires_at": 1529011030,
+    "expires": true
+  },
+  "extra": {
+  }
+}
+```
 
 ## Development
 
