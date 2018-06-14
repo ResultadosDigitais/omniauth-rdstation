@@ -1,8 +1,6 @@
-# Omniauth::Rdstation
+# OmniAuth RDStation
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/rdstation`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Implements an OmniAuth strategy for RD Station, based on OAuth2.
 
 ## Installation
 
@@ -22,14 +20,32 @@ Or install it yourself as:
 
 ## Usage
 
-Result:
+### Rails
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :rdstation, 'client-id', 'client-secret', provider_ignores_state: true
+end
+```
+
+### Sinatra
+
+```ruby
+use OmniAuth::Builder do
+  provider :rdstation, 'client-id', 'client-secret', provider_ignores_state: true
+end
+```
+
+Note: `provider_ignores_state = true` is required because the RD Station API does not implement the state parameter validation yet. When this validation be implemented, the `provider_ignores_state` will become optional.
+
+
+When the authentication succeeds, this data will be returned:
 
 ```json
 {
   "provider": "rdstation",
   "uid": null,
   "info": {
-    "name": "username"
   },
   "credentials": {
     "token": "my-jwt-access-token",
@@ -50,7 +66,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-rdstation.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ResultadosDigitais/omniauth-rdstation.
 
 ## License
 
