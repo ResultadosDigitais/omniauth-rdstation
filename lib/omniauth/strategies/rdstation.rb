@@ -16,6 +16,20 @@ module OmniAuth
         auth_url = { redirect_url: callback_url }.merge(authorize_params)
         redirect client.auth_code.authorize_url(auth_url)
       end
+
+      info do
+        { 'account_name' => raw_info['name'] }
+      end
+
+      extra do
+        { 'raw_info' => raw_info }
+      end
+
+      def raw_info
+        @raw_info ||= MultiJson.decode(
+          access_token.get('https://api.rd.services/marketing/account_info').body
+        )
+      end
     end
   end
 end
